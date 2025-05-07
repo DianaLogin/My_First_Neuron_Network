@@ -173,3 +173,15 @@ T operator* (const Vector<T>& v_1, const Vector<T>& v_2)
 
 	return sum;
 }
+
+template <typename T>
+Vector<T> operator* (const T& scalar, const Vector<T>& v)
+{
+	Vector<T> res(v.getSize());
+	for (size_t i = 0; i < v.getSize(); ++i)
+	{
+		res[i]  = scalar * v[i];
+	}
+
+	return res;
+}
