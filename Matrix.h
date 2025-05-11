@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <initializer_list>
 #include <string>
-#include "Vector.h"
+#include <vector>
 
 template <typename T, size_t Rows, size_t Cols>
 class Matrix
@@ -150,7 +150,7 @@ Matrix<T, Rows_1, Cols_2> operator*(const Matrix<T, Rows_1, Cols_1>& m_1, const 
 
 // Умножение матрицы на Вектор-столбец
 template<typename T, size_t Rows, size_t Cols>
-Vector<T> operator*(const Matrix<T, Rows, Cols>& matrix, const Vector<T>& vector)
+std::vector<T> operator*(const Matrix<T, Rows, Cols>& matrix, const std::vector<T>& vector)
 {
     if (vector.getSize() != Cols)
     {
@@ -160,7 +160,7 @@ Vector<T> operator*(const Matrix<T, Rows, Cols>& matrix, const Vector<T>& vector
         );
     }
 
-    Vector<T> result(Rows); // Вектор-столбец 
+    std::vector<T> result(Rows); // Вектор-столбец 
     for (size_t i = 0; i < Rows; ++i)
     {
         T sum = 0;
@@ -176,7 +176,7 @@ Vector<T> operator*(const Matrix<T, Rows, Cols>& matrix, const Vector<T>& vector
 
 // Умножение вектора-строки на матрицу
 template<typename T, size_t Rows, size_t Cols>
-Vector<T> operator*(const Vector<T>& vector, const Matrix<T, Rows, Cols>& matrix)
+std::vector<T> operator*(const std::vector<T>& vector, const Matrix<T, Rows, Cols>& matrix)
 {
     if (vector.getSize() != Rows)
     {
@@ -186,7 +186,7 @@ Vector<T> operator*(const Vector<T>& vector, const Matrix<T, Rows, Cols>& matrix
         );
     }
 
-    Vector<T> result(Cols); // Вектор-строка размером Cols
+    std::vector<T> result(Cols); // Вектор-строка размером Cols
     for (size_t j = 0; j < Cols; ++j)
     {
         T sum = 0;
